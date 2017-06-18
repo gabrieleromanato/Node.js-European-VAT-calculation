@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Node.js: EU VAT number calculation</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/public/style.css" type="text/css" media="screen">
+    </head>
+<body>
+<div class="container">
+    <form action="javascript:;" method="post" id="eu-vat-form" class="form-horizontal">
+        <div class="form-group">
+            <label for="country" class="col-sm-2 control-label">Country</label>
+            <div class="col-sm-10">
+                <select name="country" class="form-control" id="country">
+                    <option value="">Choose</option>
+                    <% rates.forEach(function(rate) { var vat = parseInt(rate.periods[0].rates.standard, 10); %>
+                        <option value="<%=  vat %>"><%= rate.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="amount" class="col-sm-2 control-label">Amount</label>
+            <div class="col-sm-10">
+                <input type="text" name="amount" class="form-control" id="amount" placeholder="Amount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="total" class="col-sm-2 control-label">Total</label>
+            <div class="col-sm-10">
+                <input type="text" name="total" class="form-control" id="total" placeholder="Total">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+                <button type="button" id="add-vat" class="btn btn-primary btn-lg">Add VAT to amount</button>
+                <button type="button" id="remove-vat" class="btn btn-primary btn-lg">Remove VAT from amount</button>
+                <button type="button" id="calc-vat" class="btn btn-primary btn-lg">Get VAT amount from total</button>
+                <span id="results"></span>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/public/jquery.min.js"></script>
+<script src="/public/eu-vat.js"></script>
+</body>
+</html>
